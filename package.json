@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "react": "15.2.1",
-    "react-native": "0.30.0"
+    "react-native": "0.30.0",
+    "react-native-activity-view": "^0.2.10",
+    "react-native-vector-icons": "^2.0.3"
   }
 }

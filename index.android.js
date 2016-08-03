@@ -1,53 +1,72 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * Wind React Native App
+ * @Winddy
  */
 
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View
+  View,
+  Navigator,
+  BackAndroid
 } from 'react-native';
 
+import ListViewTest  from './app/views/ListViewTest.js';
+
 class WindReactNative extends Component {
+
+  componentDidMount() {
+    var navigator = WindReactNative._navigator;
+    BackAndroid.addEventListener('hardwareBackPress', ()=>{
+      if (navigator.getCurrentRoutes().Length === 1){
+        return false;
+      }
+      navigator.pop();
+      return true;
+    });
+  }
+
+  componentWillUnmount(){
+    BackAndroid.removeEventListener('hardwareBackPress');
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Navigator 
+        style={styles.container}
+        tintColor='#FF6600'
+        initialRoute={{id: 'ListViewTest'}}
+        renderScene={this.renderNavigatorScene.bind(this)}
+        />
+    );
+  }
+
+  renderNavigatorScene(route, navigator){
+    var Component = null;
+    WindReactNative._navigator = navigator;
+    switch (route.id) {
+      case 'ListViewTest':
+        Component = this.renderWListViewTest(navigator);
+        break;
+    }
+    return Component;
+  }
+
+  renderWListViewTest(navigator){
+    return (
+      <ListViewTest navigator = {navigator}/>
     );
   }
 }
 
+WindReactNative._navigator = null;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    backgroundColor: '#F6F6EF',
+  }
 });
 
 AppRegistry.registerComponent('WindReactNative', () => WindReactNative);
