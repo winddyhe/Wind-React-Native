@@ -12,7 +12,8 @@ import {
   BackAndroid
 } from 'react-native';
 
-import ListViewTest  from './app/views/ListViewTest.js';
+import ListViewTest           from './app/views/ListViewTest.js';
+import ActivityIndicatorTest  from './app/views/ActivityIndicatorTest.js';
 
 class WindReactNative extends Component {
 
@@ -47,15 +48,24 @@ class WindReactNative extends Component {
     WindReactNative._navigator = navigator;
     switch (route.id) {
       case 'ListViewTest':
-        Component = this.renderWListViewTest(navigator);
+        Component = this.renderWListViewTest(route, navigator);
+        break;
+      case 'ActivityIndicatorTest':
+        Component = this.renderWActivityIndicatorTest(route, navigator); 
         break;
     }
     return Component;
   }
 
-  renderWListViewTest(navigator){
+  renderWListViewTest(route, navigator){
     return (
-      <ListViewTest navigator = {navigator}/>
+      <ListViewTest title = {route.title} navigator = {navigator}/>
+    );
+  }
+
+  renderWActivityIndicatorTest(route, navigator){
+    return (
+      <ActivityIndicatorTest title = {route.title} navigator = {navigator} />
     );
   }
 }

@@ -7,9 +7,8 @@ import {
     TouchableHighlight
 }  from 'react-native';
 
-import ToolbarAndroid from 'ToolbarAndroid';
-
-import WListView from '../components/ListView/index.js';
+import HeaderToolbar  from './widgets/HeaderToolbar.js';
+import WListView      from '../components/ListView/index.js';
 import ListViewConfig from './config/ListViewConfig.json';
 
 class ListViewTest extends Component {
@@ -22,13 +21,13 @@ class ListViewTest extends Component {
     }
 
     render() {
+        var title = this.props.title === undefined ? 'ListViewTest' : this.props.title;
         return (
             <View style={{flex: 1}}>
-                <ToolbarAndroid style={styles.toolbar}
-                    title={'ListViewTest'}
-                    navIcon={require('./images/back_white.png')}
-                    onIconClicked={this.props.navigator.pop}
-                    titleColor={'#FFFFFF'}/>
+                <HeaderToolbar title         = {title}
+                               backImage     = {require('./images/back_white.png')}
+                               onBackPressed = {this.props.navigator.pop}
+                               titleColor    = {'#FFFFFF'} />
                 <WListView
                     style      = { styles.container }
                     dataSource = {this.state.RowArrays}
@@ -40,10 +39,10 @@ class ListViewTest extends Component {
 
     renderListViewRow(rowData) {
         return (
-            <TouchableHighlight key={rowData.Title} 
-                                style={styles.row}
-                                onPress={()=>this.onListViewRowPressed(rowData)}
-                                underlayColor='#DD4400'>
+            <TouchableHighlight key           = {rowData.Title} 
+                                style         = {styles.row}
+                                onPress       = {()=>this.onListViewRowPressed(rowData)}
+                                underlayColor = '#DD4400'>
                 <View >
                     <Text style={styles.rowText}>{rowData.Title}</Text>
                 </View>
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
 	rowText: {
         alignSelf: 'center',
         color: '#ffffff',
-        fontSize: 30,
+        fontSize: 30,   
     },
     toolbar: {
         height: 56,

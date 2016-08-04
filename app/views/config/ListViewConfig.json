@@ -4,6 +4,10 @@
         {
             "Title":"ListView控件",
             "RouteID":"ListViewTest"
+        },
+        {
+            "Title":"ActivityIndicator控件",
+            "RouteID":"ActivityIndicatorTest"
         }
     ]
 }

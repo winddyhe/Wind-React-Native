@@ -24,7 +24,7 @@ class WListView extends Component {
     render() {
         return (
             <ListView 
-                style = {this.props.style}
+                style      = { this.props.style }
                 dataSource = { this.state.dataSource }
                 renderRow  = { this.state.renderRow } 
             />
