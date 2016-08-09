@@ -8,6 +8,10 @@
         {
             "Title":"ActivityIndicator控件",
             "RouteID":"ActivityIndicatorTest"
+        },
+        {
+            "Title":"Modal组件",
+            "RouteID":"ModalTest"
         }
     ]
 }
