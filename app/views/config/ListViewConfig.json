@@ -12,6 +12,10 @@
         {
             "Title":"Modal组件",
             "RouteID":"ModalTest"
+        },
+        {
+            "Title":"WebView控件",
+            "RouteID":"WebViewTest"
         }
     ]
 }

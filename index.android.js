@@ -15,6 +15,7 @@ import {
 import ListViewTest           from './app/views/ListViewTest.js';
 import ActivityIndicatorTest  from './app/views/ActivityIndicatorTest.js';
 import ModalTest              from './app/views/ModalTest.js';
+import WebViewTest            from './app/views/WebViewTest.js';
 
 class WindReactNative extends Component {
 
@@ -57,6 +58,9 @@ class WindReactNative extends Component {
       case "ModalTest":
         Component = this.renderWModalTest(route, navigator);
         break;
+      case "WebViewTest":
+        Component = this.renderWWebViewTest(route, navigator);
+        break;
     }
     return Component;
   }
@@ -76,6 +80,12 @@ class WindReactNative extends Component {
   renderWModalTest(route, navigator){
     return (
       <ModalTest title = {route.title} navigator = {navigator} />
+    );
+  }
+
+  renderWWebViewTest(route, navigator){
+    return (
+      <WebViewTest title = {route.title} navigator = {navigator} />
     );
   }
 }
