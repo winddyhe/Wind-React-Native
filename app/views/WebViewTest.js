@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import ScaledWebView from './widgets/ScaledWebView.js';
+import HeaderToolbar from './widgets/HeaderToolbar.js'; 
 
 class WebViewTest extends Component {
 
@@ -23,6 +24,7 @@ class WebViewTest extends Component {
             loading: true,
             scalesPageToFit: true,
         }
+        this.inputText = '';
     }
 
     handleTextInputChange(event) {
@@ -30,10 +32,11 @@ class WebViewTest extends Component {
         if (!/^[a-zA-Z-_]+:/.test(url)) {
             url = 'http://' + url;
         }
-        WebViewTest.inputText = url;
+        this.inputText = url;
     }
 
     render() {
+        this.inputText = this.state.url;
         return (
             <View style={{flex: 1}}>
                 <HeaderToolbar title         = {this.props.title}
@@ -59,7 +62,7 @@ class WebViewTest extends Component {
                                    defaultValue={this.state.url}
                                    onSubmitEditing={this.onSubmitEditing.bind(this)}
                                    onChange={this.handleTextInputChange.bind(this)}
-                                   clearButtonMode='white-editing'
+                                   clearButtonMode='while-editing'
                                    style={Styles.addressBarTextInput}
                         />
                         <TouchableOpacity onPress={this.pressGoButton.bind(this)}>
@@ -126,7 +129,7 @@ class WebViewTest extends Component {
     pressGoButton(){
         var url = this.inputText.toLowerCase();
         if (url === this.state.url){
-            this.reload();
+           this.reload();
         }
         else{
             this.setState({url: url});
@@ -176,7 +179,7 @@ const Styles = StyleSheet.create({
         marginRight: 3,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: DISABLED_WASH,
+        backgroundColor: 'rgba(255,255,255,0.25)',
         borderColor: 'transparent',
         borderRadius: 3,
     },
@@ -204,7 +207,5 @@ const Styles = StyleSheet.create({
         marginRight: 6
     }
 });
-
-WebViewTest.inputText = '';
 
 export default WebViewTest;

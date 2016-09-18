@@ -8,7 +8,7 @@ import {
     WebView
 } from 'react-native';
 
-import Button from './widgets/Button1.js';
+import Button from './Button1.js';
 
 class ScaledWebView extends Component {
 
